@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   tabChanged(event) {
+    this.tabService.changeTab();
     console.log('tab changed');
   };
 }

@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
   templateUrl: './students.component.html'
 })
-export class StudentsComponent implements OnInit {
+export class StudentsComponent implements OnInit{
   @Input() data;
   public newStudentModel = '';
 
@@ -65,13 +65,17 @@ export class StudentsComponent implements OnInit {
       });
   }
 
-  public  complete(lesson, student){
+  public complete(lesson, student) {
     alert('completion of lessons to be implemented');
   }
 
-  ngOnInit(): void {
+  private loadData(){
     this.getAllStudents();
-    this.getAllLessons();
+    this.getAllLessons()
+  }
+  ngOnInit(): void {
+    this.loadData();
+    this.data.reload.subscribe( event => (this.loadData()));
   }
 
 }
