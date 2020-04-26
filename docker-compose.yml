@@ -1,4 +1,4 @@
-version: '2.3' # specify docker-compose version
+version: '3.4'
 
 # Define the services/containers to be run
 services:
@@ -12,7 +12,9 @@ services:
       - express
     volumes:
       - ".:/app"
-    tty: false
+      - /app/express-server/node_modules
+      - /app/angular-app/node_modules
+    tty: true
     ports:
       - 8181:4200
       - 4400:49153
@@ -24,7 +26,9 @@ services:
       - database
     volumes:
        - ".:/app"
-    tty: false
+       - /app/express-server/node_modules
+       - /app/angular-app/node_modules
+    tty: true
     ports:
       - "3000:3000" #specify ports forewarding
 
