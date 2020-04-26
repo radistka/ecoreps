@@ -1,6 +1,7 @@
-# mean-stack-docker
-## MEAN Docker
-App to show a Docker Compose set up for a mean application running Angular 7.
+# ecoreps-backend-challenge
+## Ecoreps Backend Challenge (MEAN Stack)
+
+This is a challenge dedicated to backend developers aiming to join our team helping students by providing them a fun and sustainable learning environment. 
 
 ## Set up
 Make sure you have docker and docker-compose installed.
