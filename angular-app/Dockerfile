@@ -1,21 +1,17 @@
-# Stage 1
-FROM node:8.11.2-alpine as node
+FROM node:12.2.0
 
-WORKDIR /usr/src/app
+WORKDIR /app/angular-app
 
-COPY package*.json ./
+RUN npm install -g @angular/cli@8.3.1
+
+RUN npm i npm@latest -g
 
 RUN npm i npm@latest -g
 
 RUN npm install
 
-COPY . .
+CMD npm start
 
-RUN npm run build
+EXPOSE 4200
+EXPOSE 49153
 
-# Stage 2
-FROM nginx:1.13.12-alpine
-
-COPY --from=node /usr/src/app/dist /usr/share/nginx/html
-
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf

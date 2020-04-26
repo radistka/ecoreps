@@ -1,0 +1,33 @@
+<div class="container-fluid card">
+  <div class="row card-header">
+    <div class="col-sm-3">Add new Lesson (Title):</div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-3">
+      <input class="mat-input-element mat-form-field" placeholder="Lesson Title" [(ngModel)]="newLessonModelTitle" />
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-3">
+      <button class="mat-button" (click)="addLesson()" [disabled]="newLessonModelTitle.trim().length === 0">+</button>
+    </div>
+  </div>
+  <div class="row card-body">
+    <table class=" table mat-table mat-table-sticky" *ngIf="lessons.length > 0">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let lesson of lessons">
+        <td> {{lesson.title}} </td>
+        <td>  {{ lesson.content }}
+        </td>
+        <td>
+          <button class="mat-button btn-danger" (click)="deleteLesson(lesson)">-</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

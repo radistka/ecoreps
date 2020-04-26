@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-// Import rxjs map operator
-import 'rxjs/add/operator/map';
+import { TabService } from './tab.service';
+import { Tab } from './tab.model';
+import { LessonsComponent } from './components/lessons.component';
 
 @Component({
   selector: 'app-root',
@@ -9,35 +9,21 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app works!';
 
-  // Link to our api, pointing to localhost
-  API = 'http://localhost:3000';
 
-  // Declare empty list of people
-  people: any[] = [];
+  tabs = new Array<Tab>();
+  selectedTab: number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private tabService: TabService) {}
 
-  // Angular 2 Life Cycle event when component has been initialized
   ngOnInit() {
-    this.getAllPeople();
+    this.tabService.tabSub.subscribe(tabs => {
+      this.tabs = tabs;
+      this.selectedTab = tabs.findIndex(tab => tab.active);
+    });
   }
 
-  // Add one person to the API
-  addPerson(name, age) {
-    this.http.post(`${this.API}/users`, {name, age})
-      .subscribe((data: any) => {
-        this.getAllPeople();
-      }, (error: any) => {console.log(error);});
-  }
-
-  // Get all users from the API
-  getAllPeople() {
-    this.http.get(`${this.API}/users`)
-      .subscribe((people : any )=> {
-        console.log(people)
-        this.people = people
-      }, (error: any) => {console.log(error);});
-  }
+  tabChanged(event) {
+    console.log('tab changed');
+  };
 }

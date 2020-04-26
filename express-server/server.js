@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 
 // Get our API routes
 const api = require('./routes/api');
+const lessons = require('./routes/lessons');
+const students = require('./routes/students');
 
 const app = express();
 
@@ -15,13 +17,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Cross Origin middleware
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   next()
-})
+});
 
 // Set our api routes
 app.use('/', api);
+app.use('/', lessons);
+app.use('/', students);
 
 
 /**

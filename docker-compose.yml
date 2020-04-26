@@ -5,15 +5,28 @@ services:
   angular:
     hostname: localhost
     #container_name: angular-app
-    build: angular-app
+    build:
+      context: .
+      dockerfile: angular-app/Dockerfile
+    links:
+      - express
+    volumes:
+      - ".:/app"
+    tty: false
     ports:
-      - 8181:80
+      - 8181:4200
+      - 4400:49153
   express: #name of the second service
-    build: express-server # specify the directory of the Dockerfile
-    ports:
-      - "3000:3000" #specify ports forewarding
+    build:
+      context: .
+      dockerfile: express-server/Dockerfile
     links:
       - database
+    volumes:
+       - ".:/app"
+    tty: false
+    ports:
+      - "3000:3000" #specify ports forewarding
 
   database: # name of the third service
     image: mongo # specify image to build container from
