@@ -21,7 +21,7 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
  
  ## Challenge
  
- This playground is a simplified version of te ecoreps learning platform. Using the MEAN stack, our app includes: 
+ This playground is a simplified version of the ecoreps learning platform. Using the MEAN stack, our app includes: 
  - A MongoDB with the Lesson and Student Schema
  - An Express Server with routes needed to manage students and lessons
  - An Angular-Frontend (localhost:8181) 
@@ -31,11 +31,13 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
   1. Basic creation, view and deletion of students and lessons (Backend and Frontend)
   2. Complete lessons for students (only frontend) 
   3. Show progress for each student including: 
+        - number of lessons completed and total lessons
         - percentage of total lessons completed 
-        - number of lessons completed and total lessons 
-        - percentile relative to class General formulae: rank of the user: y
+        - percentile relative to all students
+            General formulae:   rank of the user: y (students with most completed lessons has rank 1, next student has rank 2, and so on)
                                 Number of students: n
-                                 -> x = (n-y)/(n-1)*100 (only frontend)
+                                 ->  percentile: x = (n-y)/(n-1)*100 (only frontend)
+            -> "You performed better than x% of your classmates"
                                  
                                  
 ## Requirements
@@ -56,6 +58,6 @@ on the Angular app.
 
 ## Submission
 
-The solution must in form of a git repository based on this one and and can be hosted on your account
+The solution must be in form of a git repository based on this one and can be hosted on your account
 or transferred via E-Mail or any other service in a .git file but including the full .git history.
  
