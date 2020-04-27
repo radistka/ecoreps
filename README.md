@@ -62,4 +62,8 @@ on the Angular app.
 
 The solution must be in form of a git repository based on this one and can be hosted on your account
 or transferred via E-Mail or any other service in a .git file but including the full .git history.
+
+## Contact and Questions:
+
+If you have any questions rearding the task, please contact chris@huck-it.de or skype christian.huck :)
  
