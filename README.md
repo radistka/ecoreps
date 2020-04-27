@@ -35,10 +35,11 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
         - number of completed lessons by student
         - percentage of lessons completed by student
         - percentile relative to all students
-            - General formulae:   rank of the user: y (student with most completed lessons has rank 1, next student has rank 2, and so on)
-                                Number of students: n
-                                 ->  percentile: x = (n-y)/(n-1)*100 (only frontend so far)
-            -> "You completed more lessons than x% of the other students"
+            - General formulae:   
+                -  rank of the user: y (student with most completed lessons has rank 1, next student has rank 2, and so on)
+                -  Number of students: n
+                - ->  percentile: x = (n-y)/(n-1)*100 (only frontend so far)
+                - -> "You completed more lessons than x% of the other students"
                                  
                                  
 ## Requirements
