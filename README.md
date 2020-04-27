@@ -29,15 +29,16 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
  Currently the app has the following features:
   
   1. Basic creation, view and deletion of students and lessons (Backend and Frontend)
-  2. Complete lessons for students (only frontend) 
+  2. Completed lessons for students (only frontend so far) 
   3. Show progress for each student including: 
-        - number of lessons completed and total lessons
-        - percentage of total lessons completed 
+        - total number of lessons
+        - number of completed lessons by student
+        - percentage of lessons completed by student
         - percentile relative to all students
-            General formulae:   rank of the user: y (students with most completed lessons has rank 1, next student has rank 2, and so on)
+            - General formulae:   rank of the user: y (student with most completed lessons has rank 1, next student has rank 2, and so on)
                                 Number of students: n
-                                 ->  percentile: x = (n-y)/(n-1)*100 (only frontend)
-            -> "You performed better than x% of your classmates"
+                                 ->  percentile: x = (n-y)/(n-1)*100 (only frontend so far)
+            -> "You completed more lessons than x% of the other students"
                                  
                                  
 ## Requirements
