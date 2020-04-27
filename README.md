@@ -30,7 +30,7 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
   
   1. Basic creation, view and deletion of students and lessons (Backend and Frontend)
   2. Completed lessons for students (only frontend so far) 
-  3. Show progress for each student including: 
+  3. Show progress for each student including (only frontend so far):
         - total number of lessons
         - number of completed lessons by student
         - percentage of lessons completed by student
@@ -38,7 +38,7 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
             - General formulae:   
                 -  rank of the user: y (student with most completed lessons has rank 1, next student has rank 2, and so on)
                 -  Number of students: n
-                - ->  percentile: x = (n-y)/(n-1)*100 (only frontend so far)
+                - ->  percentile: x = (n-y)/(n-1)*100 
                 - -> "You completed more lessons than x% of the other students"
                                  
                                  
