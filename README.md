@@ -39,12 +39,12 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
              -  Number of students: n
              -  percentile: x = (n-y)/(n-1)*100 
              - -> "You completed more lessons than x% of the other students"
-        Example: 3 Students (n=3). Student 1 has 10 lessons completed, Student 2 has 5 lessons completed and Student 3 has 7 lessons completed.
-            -> ranks: Student 1: 1, Student 2: 3, Student 3: 2
-            -> percentiles: 
-             -  Student 1: (3-1)/(3-1)*100=100
-             -  Student 2: (3-3)/(3-1)*100= 0
-             -  Student 3: (3-2)/(3-1)*100= 50
+             - Example: 3 Students (n=3). Student 1 has 10 lessons completed, Student 2 has 5 lessons completed and Student 3 has 7 lessons completed.
+                 - -> ranks: Student 1: 1, Student 2: 3, Student 3: 2
+                 - -> percentiles: 
+                 -  Student 1: (3-1)/(3-1)*100=100
+                 -  Student 2: (3-3)/(3-1)*100= 0
+                 -  Student 3: (3-2)/(3-1)*100= 50
                                  
                                  
 ## Requirements
