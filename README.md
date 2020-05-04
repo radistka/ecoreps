@@ -34,8 +34,7 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
         - total number of lessons
         - number of completed lessons by student
         - percentage of lessons completed by student
-        - percentile relative to all students
-            How to calculate percentile in 3d):
+        - percentile relative to all students. How to calculate percentile in 3d):
              -  rank of the user: y (student with most completed lessons has rank 1, next student has rank 2, and so on.)
              -  Number of students: n
              -  percentile: x = (n-y)/(n-1)*100 
