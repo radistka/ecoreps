@@ -28,9 +28,9 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
  
  Currently the app has the following features:
   
-  1. Basic creation, view and deletion of students and lessons (Backend and Frontend)
-  2. Completed lessons for students (only frontend so far) 
-  3. Show progress for each student including (only frontend so far):
+  1. Basic creation, view and deletion of students and lessons (Backend and Frontend existing)
+  2. Completed lessons for students (only frontend so far, backend is missing) 
+  3. Show progress for each student including (only frontend so far, backend is missing):
         - total number of lessons
         - number of completed lessons by student
         - percentage of lessons completed by student
@@ -50,7 +50,7 @@ $ git clone https://gitlab.com/huckIT/ecorepsBackendChallenge
 ## Requirements
 
 1. Implement the missing backend part for the features  2. and 3. extending the provided express server. 
-This will also include to **extend the MongoDD data models**. 
+This will also include to **extend the MongoDB data models**. 
 2. Make sure that the data displayed in the Angular App is retrieved from the backend
 3. Ensure that the data for all students is always up to date when showing the list. 
 Think of a scalable approach that guarantees eventual consistency. 
