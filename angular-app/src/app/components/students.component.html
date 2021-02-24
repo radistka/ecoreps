@@ -23,8 +23,8 @@
         <td> {{student.name}} </td>
         <td> Completed Lessons: <b>(TODO, this is example data)</b><br>
           <ul>
-            <li>33.3% of lessons completed</li>
-            <li>3 of 9 lessons completed</li>
+            <li>{{student.donePercent}}% of lessons completed</li>
+            <li>{{student.finished_lessons.length}} of {{student.lessons.length}} lessons completed</li>
             <li>You performed better than 30% of your class mates</li>
           </ul>
         </td>
@@ -32,9 +32,9 @@
           <button class="mat-button btn-danger" (click)="deleteStudent(student)">-</button>
         </td>
       </tr>
-        <tr *ngFor="let lesson of lessons">
+        <tr *ngFor="let lesson of student.lessons">
           <td>{{lesson.title}}</td>
-          <td><input  (click)="complete(lesson,student)" type="checkbox" class="form-check-input" id="exampleCheck1"> complete  <b>(TODO)</b> </td>
+          <td><input  (click)="complete(lesson, student, $event)" type="checkbox" [checked]="lesson.checked" class="form-check-input" id="exampleCheck1"> complete </td>
         </tr>
       </ng-container>
       </tbody>

@@ -46,7 +46,15 @@ export class StudentsComponent implements OnInit{
   public getAllStudents() {
     this.http.get(`${this.API}/students`)
       .subscribe((students: any) => {
-        console.log(students);
+        students.forEach(student => {
+          student.lessons = this.lessons.map((lesson) => {
+            return {
+              ...lesson,
+              checked: student.finished_lessons.indexOf(lesson._id) >= 0,
+            }
+          });
+          student.donePercent = ((student.finished_lessons.length/student.lessons.length)*100).toFixed(2);
+        });
         this.students = students.reverse();
       }, (error: any) => {
         console.log(error);
@@ -58,20 +66,28 @@ export class StudentsComponent implements OnInit{
   public getAllLessons() {
     this.http.get(`${this.API}/lessons`)
       .subscribe((lessons: any) => {
-        console.log(lessons);
         this.lessons = lessons.reverse();
       }, (error: any) => {
         console.log(error);
       });
   }
 
-  public complete(lesson, student) {
-    alert('completion of lessons to be implemented');
+  public complete(lesson, student, event) {
+    const isDone = event.target.checked;
+    this.http.put(`${this.API}/students/${student._id}/lessons`, {
+      lesson_id: lesson._id,
+      done: isDone,
+    })
+      .subscribe((data: any) => {
+        this.getAllStudents();
+      }, (error: any) => {
+        console.log(error);
+      });
   }
 
   private loadData(){
+    this.getAllLessons();
     this.getAllStudents();
-    this.getAllLessons()
   }
   ngOnInit(): void {
     this.loadData();
