@@ -15,7 +15,7 @@ mongoose.connect(dbHost);
 
 const studentSchema = new mongoose.Schema({
     name: String,
-    finished_lessons: Array,
+    finished_lessons: [{ lesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' }, finished_at: Date }],
 });
 
 // create mongoose model
@@ -27,12 +27,11 @@ router.get('/', (req, res) => {
 });
 
 /* GET all students. */
-router.get('/students', (req, res) => {
-    Student.find({}, (err, students) => {
-        // console.log('\n students', students);
-        if (err) res.status(500).send(error);
+router.get('/students', async (req, res) => {
+    try {
+        const students = await Student.find({}).populate('finished_lessons.lesson');
         res.status(200).json(students);
-    });
+    } catch (err) { res.status(500).send(error) }
 });
 
 
@@ -46,10 +45,11 @@ router.delete('/students/:id', (req, res) => {
 
 /* GET one student. */
 router.get('/students/:id', (req, res) => {
-    Student.findById(req.params.id, (err, students) => {
-        if (err) res.status(500).send(error)
-        res.status(200).json(students);
-    });
+    try {
+        const student = Student.findById(req.params.id).populate('finished_lessons.lesson');
+        res.status(200).json(student);
+    } catch (err) { res.status(500).send(error) }
+
 });
 
 /* Create a student. */
@@ -77,9 +77,10 @@ router.put('/students/:id/lessons', async(req, res) => {
     }
 
     const lessons = student.finished_lessons || [];
+
     student.finished_lessons = req.body.done === true
-        ? _.concat(lessons, [req.body.lesson_id])
-        : _.difference(lessons, [req.body.lesson_id]);
+        ? _.concat(lessons, [{ lesson: req.body.lesson_id, finished_at: new Date() }])
+        : _.differenceWith(lessons, [{ lesson: req.body.lesson_id }], (l, n) => l.lesson.toString() === n.lesson);
 
     let updated;
     try {

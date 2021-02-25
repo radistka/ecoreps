@@ -55,10 +55,13 @@ export class StudentsComponent implements OnInit{
           student.lessons = this.lessons.map((lesson) => {
             return {
               ...lesson,
-              checked: student.finished_lessons.indexOf(lesson._id) >= 0,
+              checked: student.finished_lessons.length && (student.finished_lessons.findIndex(l => l.lesson._id === lesson._id) >= 0) || false,
             }
           });
-          console.log(student);
+          // todo: last 3 finished classes will be here, you can find names by next path: lastFinished[index].lesson.title
+          const lastFinished = [...student.finished_lessons]
+            .sort((a,b) => (new Date(b.finished_at) - new Date(a.finished_at)))
+            .slice(0, 3);
           student.percentiles = ((students.length-student.rank)/(students.length-1) * 100);
           student.donePercent = ((student.finished_lessons.length/student.lessons.length)*100).toFixed(2);
         });
