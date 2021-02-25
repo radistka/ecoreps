@@ -46,15 +46,23 @@ export class StudentsComponent implements OnInit{
   public getAllStudents() {
     this.http.get(`${this.API}/students`)
       .subscribe((students: any) => {
-        students.forEach(student => {
+        const sorted =[...students].sort((a,b) => (b.finished_lessons.length - a.finished_lessons.length));
+        students.forEach((student) => {
+          // todo: if we have multiple users with same amount of finished lessons there may be needed clarification:
+          // todo: example user 1 had finished 2 lessons same as user 2, but user 3 finished no lessons, ranks for them will be 1, 1, 3
+          // todo: clarification question - Is this rank correct? Or it should be 1, 1, 2? If it should be 1, 1, 2 formula provided for rank calculation should be updated
+          student.rank = (sorted.findIndex(i => i.finished_lessons.length === student.finished_lessons.length) + 1);
           student.lessons = this.lessons.map((lesson) => {
             return {
               ...lesson,
               checked: student.finished_lessons.indexOf(lesson._id) >= 0,
             }
           });
+          console.log(student);
+          student.percentiles = ((students.length-student.rank)/(students.length-1) * 100);
           student.donePercent = ((student.finished_lessons.length/student.lessons.length)*100).toFixed(2);
         });
+
         this.students = students.reverse();
       }, (error: any) => {
         console.log(error);

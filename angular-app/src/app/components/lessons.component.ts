@@ -45,7 +45,6 @@ export class LessonsComponent implements OnInit {
   public getAllLessons() {
     this.http.get(`${this.API}/lessons`)
       .subscribe((lessons: any) => {
-        console.log(lessons);
         this.lessons = lessons.reverse();
       }, (error: any) => {
         console.log(error);

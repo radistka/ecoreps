@@ -77,15 +77,13 @@ router.put('/students/:id/lessons', async(req, res) => {
     }
 
     const lessons = student.finished_lessons || [];
-    const updateLessons = req.body.done === true
+    student.finished_lessons = req.body.done === true
         ? _.concat(lessons, [req.body.lesson_id])
         : _.difference(lessons, [req.body.lesson_id]);
 
-    student.finished_lessons = updateLessons;
     let updated;
     try {
         updated = await student.save();
-        console.log('updated-->>', updated);
     } catch (err) {
         return res.status(500).send(error)
     }
